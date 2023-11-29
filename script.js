@@ -8,9 +8,16 @@ var special = "!@#$%^&*";
 
 // Generate password with user options from userChoice
 function generatePassword(length, upperChoice, lowerChoice, specialChoice, numbersChoice) {
-  // checks if the inputted length of the password is between 8 and 128 characters.
-  if (length < 8 || length > 128) {
+  if (length == "") {
+    length = 8;
+  }
+  else if (length < 8 || length > 128) { // checks if the inputted length of the password is between 8 and 128 characters and returns an error if not.
     return "Error: Password length must be between 8 and 128 characters.";
+  }
+
+  // checks if there is at least one option selected and returns an error if not.
+  if (upperChoice === false && lowerChoice === false && specialChoice === false && numbersChoice === false){
+    return "Error: You must select an option!";
   }
 
   // checks if varChoice variables are true, and if concatenates into the selected options variable.
@@ -47,7 +54,7 @@ var generateBtn = document.querySelector("#generate");
 function writePassword() {
   // Get user input for password generation options
   var userChoice = {
-    length: window.prompt("Enter password length"),
+    length: window.prompt("Enter password length. Must be between 8 and 128. Default length is 8."),
     useUpperCase:
       window.prompt("Use uppercase letters? Y/N").toLowerCase() === "y",
     useLowerCase:
