@@ -1,7 +1,20 @@
 // Create character strings
 var lowercase = "abcdefghijklmnopqrstuvwxyz";
-var uppercase = lowercase.toUpperCase;
+var uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var special = "!@#$%^&*";
+
+// Generate password with user options from userChoice
+function generatePassword(length, upperChoice, lowerChoice, specialChoice) {
+  if (length < 8 || length > 128) {
+    return "Error: Password length must be between 8 and 128 characters.";
+  }
+
+  var lowerArray = lowercase.split("");
+  var upperArray = uppercase.split("");
+  var specialArray = special.split("");
+
+  console.log(lowerArray,upperArray,specialArray);
+}
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
@@ -15,7 +28,7 @@ function writePassword() {
     useLowerCase: window.prompt("Use lowercase letters? Y/N"),
     useSpecialChars: window.prompt("Use special characters? Y/N")
   }
-  var password = generatePassword();
+  var password = generatePassword(userChoice.length, userChoice.uppercase, userChoice.lowercase, userChoice.special);
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
