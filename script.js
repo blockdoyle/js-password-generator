@@ -1,3 +1,8 @@
+// Create character strings
+var lowercase = "abcdefghijklmnopqrstuvwxyz";
+var uppercase = lowercase.toUpperCase;
+var special = "!@#$%^&*";
+
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
