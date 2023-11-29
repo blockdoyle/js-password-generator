@@ -22,7 +22,13 @@ function generatePassword(length, upperChoice, lowerChoice, specialChoice) {
     selectedOptions = selectedOptions.concat(special);
   }
   
-  console.log(selectedOptions);
+  selectedOptions = selectedOptions.split("");
+  var finsihedPassword = "";
+  for (var i = 0; i < length; i++){
+    finsihedPassword += selectedOptions[Math.floor(Math.random() * selectedOptions.length)];
+  }
+  
+  return finsihedPassword;
 }
 
 // Assignment Code
