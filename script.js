@@ -8,10 +8,12 @@ var special = "!@#$%^&*";
 
 // Generate password with user options from userChoice
 function generatePassword(length, upperChoice, lowerChoice, specialChoice, numbersChoice) {
+  // checks if the inputted length of the password is between 8 and 128 characters.
   if (length < 8 || length > 128) {
     return "Error: Password length must be between 8 and 128 characters.";
   }
 
+  // checks if varChoice variables are true, and if concatenates into the selected options variable.
   var selectedOptions = "";
   if (upperChoice === true) {
     selectedOptions = selectedOptions.concat(uppercase);
@@ -26,8 +28,11 @@ function generatePassword(length, upperChoice, lowerChoice, specialChoice, numbe
     selectedOptions = selectedOptions.concat(numbers);
   }
   
+  // splits selectedOptions into an array.
   selectedOptions = selectedOptions.split("");
   var finsihedPassword = "";
+  
+  // Run a For Loop that randomly generates a password with a length defined by the user, with characters from selectedOptions.
   for (var i = 0; i < length; i++){
     finsihedPassword += selectedOptions[Math.floor(Math.random() * selectedOptions.length)];
   }
