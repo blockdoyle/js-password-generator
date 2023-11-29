@@ -3,17 +3,26 @@ var lowercase = "abcdefghijklmnopqrstuvwxyz";
 var uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var special = "!@#$%^&*";
 
+//s
+
 // Generate password with user options from userChoice
 function generatePassword(length, upperChoice, lowerChoice, specialChoice) {
   if (length < 8 || length > 128) {
     return "Error: Password length must be between 8 and 128 characters.";
   }
 
-  var lowerArray = lowercase.split("");
-  var upperArray = uppercase.split("");
-  var specialArray = special.split("");
-
-  console.log(lowerArray,upperArray,specialArray);
+  var selectedOptions = "";
+  if (upperChoice === true) {
+    selectedOptions = selectedOptions.concat(uppercase);
+  }
+  if (lowerChoice === true) {
+    selectedOptions = selectedOptions.concat(lowercase);
+  }
+  if (specialChoice === true) {
+    selectedOptions = selectedOptions.concat(special);
+  }
+  
+  console.log(selectedOptions);
 }
 
 // Assignment Code
@@ -24,15 +33,22 @@ function writePassword() {
   // Get user input for password generation options
   var userChoice = {
     length: window.prompt("Enter password length"),
-    useUpperCase: window.prompt("Use uppercase letters? Y/N"),
-    useLowerCase: window.prompt("Use lowercase letters? Y/N"),
-    useSpecialChars: window.prompt("Use special characters? Y/N")
-  }
-  var password = generatePassword(userChoice.length, userChoice.uppercase, userChoice.lowercase, userChoice.special);
+    useUpperCase:
+      window.prompt("Use uppercase letters? Y/N").toLowerCase() === "y",
+    useLowerCase:
+      window.prompt("Use lowercase letters? Y/N").toLowerCase() === "y",
+    useSpecialChars:
+      window.prompt("Use special characters? Y/N").toLowerCase() === "y",
+  };
+  var password = generatePassword(
+    userChoice.length,
+    userChoice.useUpperCase,
+    userChoice.useLowerCase,
+    userChoice.useSpecialChars
+  );
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
